@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="container grid-2">
+  <view class="pad-20">
+    <image src="./product1.jpg" mode="widthFix"/>
+    <image src="./product2.jpg" mode="widthFix"/>
+  </view>
+  <view class="pad-20">
+    <image src="./product3.jpg" mode="widthFix"/>
+    <image src="./product4.jpg" mode="widthFix"/>
+  </view>
+  <view>irene</view>
+</view>

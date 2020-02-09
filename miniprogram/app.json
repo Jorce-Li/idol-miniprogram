@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/homepage/index",
+    "pages/products/index",
+    "pages/community/index",
+    "pages/admin/index"
+  ],
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#FFFFFF",
+    "selectedColor": "#333",
+    "borderStyle": "white",
+    "list": [{
+      "text": "",
+      "pagePath": "pages/homepage/index",
+      "iconPath": "static/tabs/home.png",
+      "selectedIconPath": "static/tabs/home-active.png"
+    }, {
+      "text": "",
+      "pagePath": "pages/products/index",
+      "iconPath": "static/tabs/product.png",
+      "selectedIconPath": "static/tabs/product-active.png"
+    }, {
+      "text": "",
+      "pagePath": "pages/community/index",
+      "iconPath": "static/tabs/feed.png",
+      "selectedIconPath": "static/tabs/feed-active.png"
+    }, {
+      "text": "",
+      "pagePath": "pages/admin/index",
+      "iconPath": "static/tabs/shop.png",
+      "selectedIconPath": "static/tabs/shop-active.png"
+    }]
+  },
+  "window": {
+    "backgroundColor": "#eee",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTitleText": "jorce",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

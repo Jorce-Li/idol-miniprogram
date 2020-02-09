@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="user-info border-radius-5">
+    <image class="user-avatar border-circle" src="./user.jpg" mode="widthFix"/>
+    <view>
+      <view class="user-name font-bold fs-20">Jorce丶</view>
+      <view class="user-id font-thin fs-12 p-top-10">ID 0000001</view>
+    </view>
+  </view>
+  <view class="user-community border-radius-5 grid-3 text-center m-top-10">
+    <view class="grid-column flex">
+      <view class="font-bold ">0</view>
+      <view class="text font-thin fs-12 m-top-5">发帖</view>
+    </view>
+     <view class="grid-column flex">
+      <view class="font-bold ">0</view>
+      <view class="text font-thin fs-12 m-top-5">关注</view>
+    </view>
+     <view class="grid-column flex">
+      <view class="font-bold ">0</view>
+      <view class="text font-thin fs-12 m-top-5">粉丝</view>
+    </view>
+  </view>
+</view>

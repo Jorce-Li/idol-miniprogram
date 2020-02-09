@@ -1,0 +1,17 @@
+/**index.wxss**/
+
+.container{
+  padding: 20rpx;
+}
+image{
+  width: 100%;
+}
+.grid-2{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 15rpx;
+  grid-row-gap: 15rpx;
+}
+/* .pad-20{
+  padding: 20rpx;
+} */

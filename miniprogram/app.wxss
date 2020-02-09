@@ -1,0 +1,45 @@
+/**app.wxss**/
+page{
+  background-color: #eee;
+}
+.container{
+  box-sizing: border-box;
+  padding: 40rpx 20rpx 20rpx 20rpx;
+}
+.border-circle{
+  border-radius: 50%;
+}
+.border-radius-5{
+  border-radius: 10rpx;
+}
+.grid-3{
+  display: grid;
+  grid-template-columns: calc(1 / 3 * 100%) calc(1 / 3 * 100%) calc(1 / 3 * 100%);
+}
+.text-center{
+  text-align: center;
+}
+.p-top-10{
+  padding-top: 20rpx;
+}
+.m-top-5{
+  margin-top: 10rpx;
+}
+.m-top-10{
+  margin-top: 20rpx;
+}
+.fs-20{
+  font-size: 40rpx;
+}
+.fs-14{
+  font-size: 28rpx;
+}
+.fs-12{
+  font-size: 24rpx;
+}
+.font-thin{
+  font-weight: 100;
+}
+.font-bold{
+  font-weight: bold;
+}

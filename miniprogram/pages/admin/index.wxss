@@ -1,0 +1,26 @@
+/**index.wxss**/
+
+.user-info{
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.user-avatar{
+  width: 50rpx;
+  margin-right: 20rpx;
+}
+.user-community{
+  background-color: #fff;
+}
+.user-info{
+  padding-top: 20rpx;
+  padding-bottom: 40rpx;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+.user-info image{
+  width: 200rpx;
+}
+.btn{
+  margin-top: 100rpx;
+}

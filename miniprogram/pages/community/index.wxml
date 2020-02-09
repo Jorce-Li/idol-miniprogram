@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<view class="container">
+  <image src="./community.jpg" mode="widthFix"/>
+  <view class="t-left">Tag: the most beautiful idol in south korea</view>
+  <view class="t-left marginb-100">Info: the leader of red-velvet, which is one of the most populor idol girl group over the world ...</view>
+  <view class="f-bold">
+    comments:
+  </view>
+  <view>
+    fan1: waaaaaaaaaa
+  </view>
+  <view>
+    fan1: what a beauty face
+  </view>
+  <view>
+    fan1: a good miniprogram a 
+  </view>
+  <view>
+    fan1: i agree
+  </view>
+</view>
