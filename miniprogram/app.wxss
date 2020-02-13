@@ -1,10 +1,10 @@
 /**app.wxss**/
 page{
-  background-color: #eee;
+  background-color: rgba(255,200,200, 1);
 }
 .container{
   box-sizing: border-box;
-  padding: 40rpx 20rpx 20rpx 20rpx;
+  /* padding: 40rpx 20rpx 20rpx 20rpx; */
 }
 .border-circle{
   border-radius: 50%;
@@ -30,6 +30,9 @@ page{
 }
 .fs-20{
   font-size: 40rpx;
+}
+.fs-16{
+  font-size: 32rpx;
 }
 .fs-14{
   font-size: 28rpx;

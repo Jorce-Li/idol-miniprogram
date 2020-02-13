@@ -33,9 +33,9 @@
     }]
   },
   "window": {
-    "backgroundColor": "#eee",
+    "backgroundColor": "#fff",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#eee",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "jorce",
     "navigationBarTextStyle": "black"
   },

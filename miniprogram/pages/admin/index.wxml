@@ -1,13 +1,13 @@
 <!--index.wxml-->
 <view class="container">
   <view class="user-info border-radius-5">
-    <image class="user-avatar border-circle" src="./user.jpg" mode="widthFix"/>
+    <image class="user-avatar border-circle" src="{{avatarUrl}}" mode="widthFix"/>
     <view>
-      <view class="user-name font-bold fs-20">Jorce丶</view>
+      <view class="user-name font-bold fs-20">{{userInfo.nickName}}</view>
       <view class="user-id font-thin fs-12 p-top-10">ID 0000001</view>
     </view>
   </view>
-  <view class="user-community border-radius-5 grid-3 text-center m-top-10">
+  <view class="user-community border-radius-5 grid-3 text-center">
     <view class="grid-column flex">
       <view class="font-bold ">0</view>
       <view class="text font-thin fs-12 m-top-5">发帖</view>
@@ -20,5 +20,19 @@
       <view class="font-bold ">0</view>
       <view class="text font-thin fs-12 m-top-5">粉丝</view>
     </view>
+  </view>
+  <view class="user-message border-radius-5" >
+    <view class="font-bold">消息</view>
+    <view class="text font-thin fs-16 m-top-5">></view>
+  </view>
+  <view class="user-groups border-radius-5">
+    <view class="font-bold flex">
+      <view class="font-bold">我的社区</view>
+    </view>
+    <view class="text font-thin fs-16 m-top-10 text-center">0个</view>
+  </view>
+  <view class="user-fans border-radius-5" >
+    <view class="font-bold">粉丝等级</view>
+    <view class="text font-thin fs-16 m-top-10 text-center">暂无贡献</view>
   </view>
 </view>

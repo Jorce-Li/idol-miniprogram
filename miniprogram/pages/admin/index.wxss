@@ -4,6 +4,7 @@
   display: flex;
   width: 100%;
   align-items: center;
+  padding: 40rpx 20rpx 40rpx 20rpx;
 }
 .user-avatar{
   width: 50rpx;
@@ -11,6 +12,7 @@
 }
 .user-community{
   background-color: #fff;
+  padding: 40rpx 20rpx 40rpx 20rpx;
 }
 .user-info{
   padding-top: 20rpx;
@@ -23,4 +25,25 @@
 }
 .btn{
   margin-top: 100rpx;
+}
+.user-message{
+  margin: 40rpx 20rpx 40rpx 20rpx;
+  padding: 40rpx 20rpx 40rpx 20rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.user-groups{
+  margin: 40rpx 20rpx 40rpx 20rpx;
+  padding: 40rpx 20rpx 40rpx 20rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.user-fans{
+  margin: 40rpx 20rpx 40rpx 20rpx;
+  padding: 40rpx 20rpx 40rpx 20rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
 }

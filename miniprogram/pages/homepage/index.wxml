@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
   <image src="cloud://jorce-bsqf2.6a6f-jorce-bsqf2-1301118901/my-image.jpeg" mode="widthFix"/>
-  <view>jorce</view>
+  <button class="btn" bind:tap="startRecord" loading="{{recoding}}" disabled="{{recoding}}">start voice</button>
+  <button class="btn" wx:if="{{filePath}}" bind:tap="startPlay">click to open sounds</button>
 </view>
