@@ -1,4 +1,5 @@
 {
+  "cloud": true,
   "pages": [
     "pages/homepage/index",
     "pages/products/index",
