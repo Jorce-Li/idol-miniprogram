@@ -12,9 +12,29 @@ view{
 .t-left{
   text-align: left;
 }
-.marginb-100{
-  margin-bottom: 100rpx;
+.marginb-20{
+  margin-bottom: 20rpx;
 }
 .f-bold{
   font-weight: bold;
+}
+.article-container{
+  background-color: #fff;
+}
+.article-comments{
+  background-color: #fff;
+}
+.article-comment-row{
+  display: grid;
+  grid-template-columns: 150rpx auto;
+}
+.avatar{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #eee;
+  margin-left: 20rpx;
+}
+.comments{
+  border-bottom: 1px solid #eee;
 }

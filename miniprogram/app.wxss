@@ -1,6 +1,6 @@
 /**app.wxss**/
 page{
-  background-color: rgba(255,200,200, 1);
+  background-color: #f6f6f6;
 }
 .container{
   box-sizing: border-box;
@@ -12,6 +12,17 @@ page{
 .border-radius-5{
   border-radius: 10rpx;
 }
+.flex-row-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-col-start{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
 .grid-3{
   display: grid;
   grid-template-columns: calc(1 / 3 * 100%) calc(1 / 3 * 100%) calc(1 / 3 * 100%);
@@ -19,11 +30,17 @@ page{
 .text-center{
   text-align: center;
 }
+.p-10{
+  padding: 20rpx;
+}
 .p-top-10{
   padding-top: 20rpx;
 }
 .m-top-5{
   margin-top: 10rpx;
+}
+.m-bottom-5{
+  margin-bottom: 10rpx;
 }
 .m-top-10{
   margin-top: 20rpx;

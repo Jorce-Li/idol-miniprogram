@@ -1,21 +1,20 @@
 <!--index.wxml-->
 <view class="container">
-  <image src="./community.jpg" mode="widthFix"/>
-  <view class="t-left">Tag: the most beautiful idol in south korea</view>
-  <view class="t-left marginb-100">Info: the leader of red-velvet, which is one of the most populor idol girl group over the world ...</view>
-  <view class="f-bold">
-    comments:
+  <view class="article-container ">
+    <image src="{{imgSrc}}" mode="widthFix"/>
+    <view class="f-bold p-10">标签: 南韩裴珠泫</view>
+    <view class="f-bold marginb-20 p-10">内容: red velvet 队长...</view>
   </view>
-  <view>
-    fan1: waaaaaaaaaa
-  </view>
-  <view>
-    fan1: what a beauty face
-  </view>
-  <view>
-    fan1: a good miniprogram a 
-  </view>
-  <view>
-    fan1: i agree
+  <view class="article-comments">
+    <view class="f-bold p-10">
+      评论
+    </view>
+    <view class="article-comment-row p-10" wx:for="{{commentsData}}" wx:for-item="item">
+      <view class="avatar flex-row-center" style="background： {{item.background}}">{{item.avatar}}</view>
+      <view class="comments flex-col-start">
+        <view class="comments-title m-bottom-5">{{item.title}}</view>
+        <view class="comments-content m-bottom-5">{{item.content}}</view>
+      </view>
+    </view>
   </view>
 </view>

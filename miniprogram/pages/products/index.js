@@ -9,11 +9,11 @@ Page({
   },
   uploadImgToDB: function(){
     wx.getImageInfo({
-      src: './product4.jpg',
+      src: './community.jpg',
       success: res => {
         console.log(res.path);
         wx.cloud.uploadFile({
-          cloudPath: 'products/product4.jpg',
+          cloudPath: 'community/community.jpg',
           filePath: res.path, // 文件路径
         }).then(res => {
           // get resource ID
@@ -21,7 +21,7 @@ Page({
           let fileID = res.fileID;
             //把图片存到users集合表
           const db = wx.cloud.database();
-          db.collection("products").add({
+          db.collection("community").add({
             data: {
               src: fileID
             },
@@ -58,4 +58,28 @@ Page({
       })
     }) 
   },
+  onPullDownRefresh: function(){
+    setTimeout(() => {
+      wx.stopPullDownRefresh();
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }, 1000);
+  },
+  onReachBottom: function() {
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(() => {
+      const column1 = this.data.products.filter((v, index) => index % 2 === 0);
+      const column2 = this.data.products.filter((v, index) => index % 2 !== 0);
+      this.setData({
+        column1Products: [...this.data.column1Products, ...column1],
+        column2Products: [...this.data.column2Products, ...column2],
+      })
+      wx.hideLoading()
+    }, 1500);
+  }
 })
