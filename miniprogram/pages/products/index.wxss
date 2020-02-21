@@ -8,9 +8,24 @@ image{
 }
 .grid-2{
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: auto auto;
+  grid-row-gap: 15rpx;
+  grid-column-gap: 15rpx;
+}
+.product-tab{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
   grid-column-gap: 15rpx;
   grid-row-gap: 15rpx;
+  text-align: center;
+  line-height: 50rpx;
+  background-color: #fff;
+}
+.product-tab-item{
+  padding: 30rpx;
+}
+.active-tab{
+  background-color: #f6f6f6;
 }
 /* .pad-20{
   padding: 20rpx;

@@ -5,6 +5,7 @@
     <view>
       <view class="user-name font-bold fs-20">{{userInfo.nickName}}</view>
       <view class="user-id font-thin fs-12 p-top-10">ID 0000001</view>
+      <button wx:if="{{!userInfo}}" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">授权</button>
     </view>
   </view>
   <view class="user-community border-radius-5 grid-3 text-center">

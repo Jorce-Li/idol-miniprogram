@@ -10,7 +10,7 @@
       评论
     </view>
     <view class="article-comment-row p-10" wx:for="{{commentsData}}" wx:for-item="item">
-      <view class="avatar flex-row-center" style="background： {{item.background}}">{{item.avatar}}</view>
+      <view class="avatar flex-row-center" style="background:{{item.background}}">{{item.avatar}}</view>
       <view class="comments flex-col-start">
         <view class="comments-title m-bottom-5">{{item.title}}</view>
         <view class="comments-content m-bottom-5">{{item.content}}</view>

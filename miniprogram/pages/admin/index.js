@@ -4,10 +4,10 @@ const app = getApp()
 Page({
   data: {
     avatarUrl: './user.jpg',
-    userInfo: {},
+    userInfo: null,
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
   },
 
   onLoad: function() {
@@ -15,7 +15,6 @@ Page({
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          console.log(11111, res);
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
@@ -27,7 +26,25 @@ Page({
             }
           })
         }
+      },
+      fail: err => {
+        console.log(err);
       }
     })
   },
+  onGetUserInfo: function(e){
+    console.log(e);
+    if (!e.detail.userInfo) {
+      wx.showToast({
+        title: "为了您更好的体验,请先同意授权",
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+    this.setData({
+      avatarUrl: e.detail.userInfo.avatarUrl,
+      userInfo: e.detail.userInfo
+    })
+  }
 })

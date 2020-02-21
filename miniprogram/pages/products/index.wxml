@@ -1,9 +1,16 @@
 <!--index.wxml-->
-<view class="container grid-2">
-  <view class="pad-20">
-    <image wx:for="{{column1Products}}" wx:for-item="item" id="{{item._id}}" wx:key="_id" src="{{item.src}}" mode="widthFix"/>
-  </view>
-  <view class="pad-20">
-    <image wx:for="{{column2Products}}" wx:for-item="item" id="{{item._id}}" wx:key="_id" src="{{item.src}}" mode="widthFix"/>
+<view class="product-tab">
+  <view class="product-tab-item {{active === '0' ? 'active-tab' : ''}}" data-index="0" bind:tap="changeActiveTab">时间</view>
+  <view class="product-tab-item {{active === '1' ? 'active-tab' : ''}}" data-index="1"  bind:tap="changeActiveTab">类型</view>
+  <view class="product-tab-item {{active === '2' ? 'active-tab' : ''}}" data-index="2"  bind:tap="changeActiveTab">粉丝数</view>
+</view>
+<view class="container">
+  <view class="grid-2">
+    <view class="pad-20">
+      <image wx:for="{{column1Products}}" wx:for-item="item" id="{{item._id}}" wx:key="_id" src="{{item.src}}" mode="widthFix"/>
+    </view>
+    <view class="pad-20">
+      <image wx:for="{{column2Products}}" wx:for-item="item" id="{{item._id}}" wx:key="_id" src="{{item.src}}" mode="widthFix"/>
+    </view>
   </view>
 </view>

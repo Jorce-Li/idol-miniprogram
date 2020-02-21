@@ -6,6 +6,25 @@ Page({
     products: [],
     column1Products: [],
     column2Products: [],
+    active: '0',
+  },
+  changeActiveTab: function(e) {
+    console.log(e);
+    this.setData({
+      active: e.target.dataset.index
+    })
+    this.setData({
+      column1Products: this.randomArray(this.data.column1Products),
+      column2Products: this.randomArray(this.data.column2Products),
+    })
+  },
+  randomArray(array){
+    const arr = [...array];
+    for (let index = 0; index < array.length; index++) {
+      const random = Math.floor(Math.random() * (index + 1));
+      [arr[index], arr[random]] = [arr[random], arr[index]];
+    }
+    return arr;
   },
   uploadImgToDB: function(){
     wx.getImageInfo({

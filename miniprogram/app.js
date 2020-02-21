@@ -14,7 +14,22 @@ App({
         traceUser: true,
       })
     }
-
+    wx.login({
+      success (res) {
+        if (res.code) {
+          //发起网络请求
+          // wx.request({
+          //   url: 'https://test.com/onLogin',
+          //   data: {
+          //     code: res.code
+          //   }
+          // })
+        console.log(1111);
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
     this.globalData = {}
   }
 })
