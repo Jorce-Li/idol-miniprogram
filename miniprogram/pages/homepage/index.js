@@ -12,8 +12,9 @@ Page({
     recoding: false,
   },
   startRecord() {
+    console.log(1111);
     wx.getSetting({
-      success(res) {
+      success: res => {
         if (!res.authSetting['scope.record']) {
           wx.authorize({
             scope: 'scope.record',
@@ -42,6 +43,20 @@ Page({
               });
             }
           })
+        } else {
+          const recoder = wx.getRecorderManager();
+          recoder.start({
+            duration: 2000,
+          });
+          this.setData({
+            recoding: true
+          })
+          recoder.onStop(res => {
+            this.setData({
+              filePath: res.tempFilePath,
+              recoding: false
+            })
+          });
         }
       }
     })
