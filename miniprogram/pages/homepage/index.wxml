@@ -1,7 +1,17 @@
 <!--index.wxml-->
 <view class="container">
-  <image src="cloud://jorce-bsqf2.6a6f-jorce-bsqf2-1301118901/my-image.jpeg" mode="widthFix"/>
-  <button class="btn" bind:tap="startRecord" loading="{{recoding}}" disabled="{{recoding}}">点击开始录音</button>
-  <button class="btn" wx:if="{{filePath}}" bind:tap="startPlay">点击播放录音</button>
-  <view class="welcome">欢迎来到irene裴珠泫的社区</view>
+  <view class="fanClub-title">粉丝见面会预定</view>
+  <calendar bindgetdate="getdate"></calendar>
+  <view class="fanClub-title fanClub-date">已选择: {{currentSelectedDate.year + '-' + currentSelectedDate.month + '-' +  currentSelectedDate.date}}</view>
+  
+  <picker bindchange="bindPickerChange" value="{{currentPeople}}" range="{{peopleArray}}">
+    <view class="picker fanClub-title">
+      请选择陪同人员: {{peopleArray[currentPeople]}}
+    </view>
+  </picker>
+  <picker bindchange="bindPickerChange" value="{{currentPeople}}" range="{{peopleArray}}">
+    <view class="picker fanClub-title">
+      请选择场馆: {{peopleArray[currentPeople]}}
+    </view>
+  </picker>
 </view>

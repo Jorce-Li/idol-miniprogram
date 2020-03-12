@@ -3,8 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-    imgSrc: '',
-    data: {},
+    imgData: [],
     commentsData: [
       {
         avatar: 1,
@@ -36,9 +35,9 @@ Page({
   onLoad: function() {
     const db = wx.cloud.database();
     db.collection("community").get().then(res => {
+      console.log(res);
       this.setData({
-        data: res.data[0],
-        imgSrc: res.data[0].src
+        imgData: res.data
       })
     }) 
   },

@@ -1,0 +1,38 @@
+/**index.wxss**/
+
+page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+image{
+  width: 100%;
+}
+.btn{
+  border: 1px solid #ccc;
+  margin-top: 100rpx;
+}
+.welcome{
+  text-align: center;
+  font-size: 50rpx;
+  margin-top: 50rpx;
+  color: pink;
+  animation: fadeIn 5s infinite;
+}
+@keyframes fadeIn{
+  0%{
+    opacity: 1;
+  }
+  20%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  80%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+  }
+}

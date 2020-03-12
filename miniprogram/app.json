@@ -2,9 +2,12 @@
   "cloud": true,
   "pages": [
     "pages/homepage/index",
-    "pages/products/index",
     "pages/community/index",
-    "pages/admin/index"
+    "pages/map/index",
+    "pages/products/index",
+
+    "pages/admin/index",
+    "pages/recode/index"
   ],
   "tabBar": {
     "color": "#999",
@@ -32,6 +35,11 @@
       "iconPath": "static/tabs/shop.png",
       "selectedIconPath": "static/tabs/shop-active.png"
     }]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置将用于地图"
+    }
   },
   "window": {
     "backgroundColor": "#fff",

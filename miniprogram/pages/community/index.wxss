@@ -3,6 +3,13 @@
 image{
   width: 100%;
 }
+.article-swiper{
+  width: 100%;
+  height: 570rpx;
+}
+.article-swiper image{
+  border-radius: 30rpx;
+}
 .container{
   padding: 20rpx;
 }
@@ -16,10 +23,12 @@ view{
   margin-bottom: 20rpx;
 }
 .f-bold{
-  font-weight: bold;
+  font-weight: 200;
+  text-align: center;
 }
 .article-container{
   background-color: #fff;
+  border-radius: 30rpx;
 }
 .article-comments{
   background-color: #fff;
@@ -37,4 +46,14 @@ view{
 }
 .comments{
   border-bottom: 1px solid #eee;
+}
+.loading{
+  display: flex;
+  justify-content: center;
+}
+.color{
+  margin-right: 10rpx;
+  width: 30rpx;
+  height: 50rpx;
+  background-color: pink;
 }

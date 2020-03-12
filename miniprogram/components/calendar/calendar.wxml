@@ -1,0 +1,42 @@
+<view class="calendar-card {{isOpen?'':'calendar-box'}}">
+  <view class="calendar-wrapper">
+    <view class="calendar-panel">
+      <view wx:if="{{!monthBeforeCurrent}}" class="date-before" data-type="month" bindtap='dataBefore'>
+        <view class="calendar-next">《</view>
+      </view>
+      <view class="calendar-panel-box">
+        <view>{{calendar.year}}年</view>
+        <view>{{calendar.month + '月'}}</view>
+      </view>
+      <view class="date-after" data-type="month" bindtap='dataAfter'>
+           <view class="calendar-next">》</view>
+      </view>
+    </view>
+    <view class="calendar-header">
+      <view>日</view>
+      <view>一</view>
+      <view>二</view>
+      <view>三</view>
+      <view>四</view>
+      <view>五</view>
+      <view>六</view>
+    </view>
+    <view class="calendar-body">
+      <block wx:for="{{calendar.weeks}}" wx:for-item="weeks" wx:for-index="week" wx:key="weeks">
+        <view class="calender-body-date-week">
+          <block wx:for="{{weeks}}" wx:for-item="day" wx:key="day">
+            <view class="date {{calendar.month === day.month? '' : 'placeholder'}}" data-week="{{week}}" data-index="{{index}}"
+              bindtap='selectDay'>
+              <view
+                class="calender-day {{day.date == currentSelectedDate.date && currentSelectedDate.month == day.month?'date-current': ''}} {{day.reserved === true || day.disableReserve === true ? 'date-reserved' : ''}}">
+                <view class="calender-day-number {{day.date == currentSelectedDate.date && currentSelectedDate.month == day.month?'date-current': ''}} {{day.currentMonth ? 'current-month-number' : ''}} {{day.reserved === true || day.disableReserve? 'date-reserved-number' : ''}}">{{day.date}}</view>
+                <view class="calender-day-cost {{ day.date==currentSelectedDate.date && currentSelectedDate.month == day.month?'date-current': ''}} {{day.reserved === true || day.disableReserve? 'date-reserved-number' : ''}}">￥{{day.costs}}</view>
+              </view>
+              <view wx:if="" class="data-circle"></view>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

@@ -28,11 +28,11 @@ Page({
   },
   uploadImgToDB: function(){
     wx.getImageInfo({
-      src: './community.jpg',
+      src: './2.jpeg',
       success: res => {
         console.log(res.path);
         wx.cloud.uploadFile({
-          cloudPath: 'community/community.jpg',
+          cloudPath: 'community/community3.jpeg',
           filePath: res.path, // 文件路径
         }).then(res => {
           // get resource ID

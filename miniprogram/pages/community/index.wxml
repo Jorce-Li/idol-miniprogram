@@ -1,20 +1,33 @@
 <!--index.wxml-->
 <view class="container">
   <view class="article-container ">
-    <image src="{{imgSrc}}" mode="widthFix"/>
-    <view class="f-bold p-10">标签: 南韩裴珠泫</view>
-    <view class="f-bold marginb-20 p-10">内容: red velvet 队长...</view>
+    <swiper class="article-swiper" indicator-dots="{{true}}"
+        autoplay="{{false}}" interval="{{300}}" duration="{{300}}">
+      <block wx:for="{{imgData}}" wx:key="index" wx:for-index="index">
+        <swiper-item>
+          <image src="{{item.src}}" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+   
+    <view class="f-bold p-10">标签: 裴珠泫</view>
+    <view class="loading f-bold marginb-20 p-10">
+      <view class="color"></view>
+      <view class="color"></view>
+      <view class="color"></view>
+      <view class="color"></view>
+    </view>
   </view>
   <view class="article-comments">
     <view class="f-bold p-10">
-      评论
+      详情
     </view>
-    <view class="article-comment-row p-10" wx:for="{{commentsData}}" wx:for-item="item">
+    <!-- <view class="article-comment-row p-10" wx:for="{{commentsData}}" wx:for-item="item">
       <view class="avatar flex-row-center" style="background:{{item.background}}">{{item.avatar}}</view>
       <view class="comments flex-col-start">
         <view class="comments-title m-bottom-5">{{item.title}}</view>
         <view class="comments-content m-bottom-5">{{item.content}}</view>
       </view>
-    </view>
+    </view> -->
   </view>
 </view>

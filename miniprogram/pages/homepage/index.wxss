@@ -4,35 +4,22 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-color: #f8f8f6;
 }
-image{
-  width: 100%;
+.container{
+  padding-bottom: 100rpx;
 }
-.btn{
-  border: 1px solid #ccc;
-  margin-top: 100rpx;
-}
-.welcome{
+.fanClub-title{
   text-align: center;
-  font-size: 50rpx;
-  margin-top: 50rpx;
-  color: pink;
-  animation: fadeIn 5s infinite;
+  margin-top: 40rpx;
+  color: #D25743;
 }
-@keyframes fadeIn{
-  0%{
-    opacity: 1;
-  }
-  20%{
-    opacity: 1;
-  }
-  50%{
-    opacity: 0.5;
-  }
-  80%{
-    opacity: 1;
-  }
-  100%{
-    opacity: 1;
-  }
+.button{
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
 }
