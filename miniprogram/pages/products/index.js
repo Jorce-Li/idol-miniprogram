@@ -66,10 +66,10 @@ Page({
       }
     })
   },
-  onLoad: function() {
-    // this.uploadImgToDB();
+  initData: function (){
     const db = wx.cloud.database();
     db.collection("products").get().then(res => {
+      console.log(res.data);
       this.setData({
         products: res.data,
         column1Products: res.data.filter((v, index) => index % 2 === 0),
@@ -77,8 +77,13 @@ Page({
       })
     }) 
   },
+  onLoad: function() {
+    // this.uploadImgToDB();
+    this.initData();
+  },
   onPullDownRefresh: function(){
     setTimeout(() => {
+      this.initData();
       wx.stopPullDownRefresh();
       wx.showToast({
         title: '刷新成功',
