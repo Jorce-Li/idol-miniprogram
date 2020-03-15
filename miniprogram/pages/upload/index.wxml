@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="upload">
+  <view class="upload-preview" >
+    <image class="upload-preview-img" src="{{currentSrc}}"  mode="aspectFill"/>
+    <text wx:if="{{uploadedSrc.length <= 0}}" class="upload-preview-btn">请上传图片</text>
+  </view>
+  <view class="upload-thumbnails">
+    <view class="upload-thumbnails-action upload-thumbnails-img" bind:tap="uploadImg">+</view>
+    <image bind:tap="changeCurrentSrc" data-index="{{index}}" mode="aspectFill" class="upload-thumbnails-img {{index === currentIndex ? 'actived' : ''}}" wx:for="{{uploadedSrc}}" wx:for-item="src" src="{{src}}" wx:for-index="index" wx:key="index" alt="" />
+  </view>
+  <view class="upload-selected-text">已选择图片{{uploadedSrc.length}}张</view>
+  <view class="upload-btn" bind:tap="publish">发布</view>
+</view>

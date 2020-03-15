@@ -1,44 +1,24 @@
+const moment = require("moment");
+
 //index.js
 const app = getApp()
 
 Page({
   data: {
-    imgData: [],
     articles: [{}, {}],
-    commentsData: [
-      {
-        avatar: 1,
-        background: 'pink',
-        title: '粉丝一号',
-        content: '哇真是太帅了！'
-      },
-      {
-        avatar: 2,
-        background: 'blue',
-        title: '粉丝二号',
-        content: '裴姐！'
-      },
-      {
-        avatar: 3,
-        background: 'orange',
-        title: '粉丝三号',
-        content: '大柱哥！'
-      },
-      {
-        avatar: 4,
-        background: 'red',
-        title: '粉丝四号',
-        content: '白菜！'
-      },
-    ]
   },
 
-  onLoad: function() {
+  onShow: function() {
+    wx.showLoading({
+      duration: 2000,
+      title: '正在加载中'
+    })
     const db = wx.cloud.database();
-    db.collection("community").get().then(res => {
-      console.log(res);
+    db.collection("articles").get().then(res => {
       this.setData({
-        imgData: res.data
+        articles: res.data.sort((a,b) => moment(b.date).isAfter(moment(a.date))).map(v => {
+          return {...v, date: moment(v.date).fromNow()}
+        })
       })
     }) 
   },

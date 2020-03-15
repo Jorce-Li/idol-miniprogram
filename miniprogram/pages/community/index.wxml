@@ -3,16 +3,16 @@
 <view class="cardList">
   <view class="cardItme" wx:for="{{articles}}" wx:for-item="article" wx:for-index="index" wx:key="index">
     <view class="user-information">
-    <image class="user-information-avatar" src="{{imgData[0].src}}" />
-    <view class="user-information-userName">jorce</view>
-    <view class="user-information-action">···</view>
+    <image class="user-information-avatar" src="{{article.src[0]}}" />
+    <view class="user-information-userName">{{article.nickName}}</view>
+    <image mode="widthFix" src="/static/icons/point3.png" class="user-information-action" />
   </view>
   <view class="article-container ">
-    <swiper class="article-swiper" indicator-dots="{{true}}"
+    <swiper class="article-swiper" indicator-dots="{{article.src.length > 1}}"
         autoplay="{{false}}" interval="{{300}}" duration="{{300}}">
-      <block wx:for="{{imgData}}" wx:key="index" wx:for-index="index">
+      <block wx:for="{{article.src}}" wx:for-item="src" wx:key="index" wx:for-index="index">
         <swiper-item>
-          <image src="{{item.src}}" mode="aspectFill" />
+          <image src="{{src}}" mode="aspectFill" />
         </swiper-item>
       </block>
     </swiper>
@@ -24,11 +24,11 @@
    </view>
   <view class="article-like-number">3433次赞</view>
    <view class="article-comment">
-     <view class="article-userName">Jorce</view>
+     <view class="article-userName">{{article.nickName}}</view>
      <view class="article-user-comment">今天天气不错~</view>
    </view>
    <view class="article-comment-number">共353条评论</view>
-   <view class="article-date">2天前</view>
+   <view class="article-date">{{article.date}}</view>
   </view>
 </view>
 

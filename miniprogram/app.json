@@ -1,7 +1,9 @@
 {
   "cloud": true,
   "pages": [
+    "pages/upload/index",
     "pages/community/index",
+   
     "pages/homepage/index",
     "pages/map/index",
     "pages/products/index",
@@ -24,6 +26,11 @@
       "iconPath": "static/tabs/product.png",
       "selectedIconPath": "static/tabs/product-active.png"
     }, {
+      "text": "",
+      "pagePath": "pages/upload/index",
+      "iconPath": "static/tabs/plus.png",
+      "selectedIconPath": "static/tabs/plus.png"
+    },{
       "text": "",
       "pagePath": "pages/homepage/index",
       "iconPath": "static/tabs/feed.png",

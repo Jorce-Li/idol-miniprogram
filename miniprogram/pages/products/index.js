@@ -68,14 +68,23 @@ Page({
   },
   initData: function (){
     const db = wx.cloud.database();
+    let data = []
+    wx.showLoading({
+      title: '正在加载中',
+      duration: 2000
+    })
     db.collection("products").get().then(res => {
-      console.log(res.data);
-      this.setData({
-        products: res.data,
-        column1Products: res.data.filter((v, index) => index % 2 === 0),
-        column2Products: res.data.filter((v, index) => index % 2 !== 0)
-      })
-    }) 
+      data = [...res.data];
+      db.collection("articles").get().then(res => {
+        console.log(res.data);
+        data = [...data, ...res.data.map(v => { return {...v, src: v.src[0]}})];
+         this.setData({
+          products: data,
+          column1Products: data.filter((v, index) => index % 2 === 0),
+          column2Products: data.filter((v, index) => index % 2 !== 0)
+        })
+      }) 
+    })
   },
   onLoad: function() {
     // this.uploadImgToDB();
