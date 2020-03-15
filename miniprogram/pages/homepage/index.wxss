@@ -12,7 +12,6 @@ page {
 .fanClub-title{
   text-align: center;
   margin-top: 40rpx;
-  color: #D25743;
 }
 .button{
   width: 50%;
@@ -22,4 +21,36 @@ page {
   margin-top: 20rpx;
   border-radius: 10rpx;
   background-color: #fff;
+}
+.contact-view{
+  position: fixed;
+  background-color: #D25743;
+  border-radius: 50%;
+  right: 20rpx;
+  bottom: 100rpx;
+  width: 100rpx;
+  height: 100rpx;
+  font-size: 20rpx;
+  z-index: 999;
+  box-sizing: border-box;
+}
+.contact{
+  padding: 0 !important;
+  background: transparent;
+  width: 100rpx !important;
+  height: 100rpx !important;
+  display: block;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx !important;
+  box-sizing: border-box;
+}
+.card{
+  width: 690rpx;
+  border-radius: 30rpx;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-top: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 40rpx;
 }

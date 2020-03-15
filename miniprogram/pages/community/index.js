@@ -4,6 +4,7 @@ const app = getApp()
 Page({
   data: {
     imgData: [],
+    articles: [{}, {}],
     commentsData: [
       {
         avatar: 1,

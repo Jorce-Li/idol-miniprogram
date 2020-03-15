@@ -2,16 +2,22 @@
 <view class="container">
   <view class="fanClub-title">粉丝见面会预定</view>
   <calendar bindgetdate="getdate"></calendar>
-  <view class="fanClub-title fanClub-date">已选择: {{currentSelectedDate.year + '-' + currentSelectedDate.month + '-' +  currentSelectedDate.date}}</view>
+  <view class="card">
+    <view class="fanClub-title fanClub-date">已选择: {{currentSelectedDate.year + '-' + currentSelectedDate.month + '-' +  currentSelectedDate.date}}</view>
+    <picker bindchange="bindPickerChange" value="{{currentPeople}}" range="{{peopleArray}}">
+      <view class="picker fanClub-title">
+        请选择陪同人员: {{peopleArray[currentPeople]}}
+      </view>
+    </picker>
+    <picker bindchange="bindPickerChange" value="{{currentPeople}}" range="{{peopleArray}}">
+      <view class="picker fanClub-title">
+        请选择场馆: {{peopleArray[currentPeople]}}
+      </view>
+    </picker>
+  </view>
   
-  <picker bindchange="bindPickerChange" value="{{currentPeople}}" range="{{peopleArray}}">
-    <view class="picker fanClub-title">
-      请选择陪同人员: {{peopleArray[currentPeople]}}
-    </view>
-  </picker>
-  <picker bindchange="bindPickerChange" value="{{currentPeople}}" range="{{peopleArray}}">
-    <view class="picker fanClub-title">
-      请选择场馆: {{peopleArray[currentPeople]}}
-    </view>
-  </picker>
+  <view class="contact-view">
+    <button size="mini" class="contact" open-type="contact">@我</button>
+  </view>
+ 
 </view>
