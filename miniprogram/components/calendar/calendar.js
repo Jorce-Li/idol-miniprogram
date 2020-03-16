@@ -1,12 +1,13 @@
 // components/calendar/calendar.js
 /**
  * 日历选择组件
+ * author: jorce
  */
-
-const moment = require('moment')
+const moment = require('moment');
 Component({
   /**
    * 组件的属性列表
+   * data [Date] 当前现实的月份
    */
   properties: {
     date: {
@@ -16,10 +17,11 @@ Component({
     storeData: {
       type: Object,
       value: {
-        prices: {
-          default: 20,
-          weekend: 30,
-          calendar: [{date: '2020-3-17', price: 50}]
+        attributes: {
+          prices: {
+            default: 20,
+            weekend: 35
+          }
         }
       },
       observer(newVal, oldVal) {
@@ -53,14 +55,12 @@ Component({
       let index = e.currentTarget.dataset.index;
       let week = e.currentTarget.dataset.week;
       let calendar = this.data.calendar;
-      let month = calendar.weeks[week][index].month < 10 ? "0" + calendar.weeks[week][index].month : calendar.weeks[week][index].month
-      let date = calendar.weeks[week][index].date < 10 ? "0" + calendar.weeks[week][index].date : calendar.weeks[week][index].date
-      const moreThan30Days = this.checkAfter30Days(moment(calendar.moment));
-      if (moreThan30Days || calendar.weeks[week][index].reserved) {
+      const currentDate = calendar.weeks[week][index];
+      const moreThan30Days = this.checkAfter30Days(currentDate.dateFormate);
+      if (moreThan30Days || currentDate.reserved) {
         return;
       }
-      console.log(moment().year(calendar.year).month(month - 1).date(date))
-      this.getWeek(moment().year(calendar.year).month(month - 1).date(date), this.data.storeData);
+      this.getWeek(currentDate.dateFormate, this.data.storeData);
       this.checkIsMonthBeforeCurrent();
     },
     // 返回今天
@@ -69,9 +69,8 @@ Component({
     dataBefore(e) {
       let num = -1;
       let types = e.currentTarget.dataset.type;
-      let year = this.data.calendar.year + "-" + this.data.calendar.month + "-" + this.data.calendar.date
-      let _date = this.getDate(year, num, types === 'month' ? "month" : "day");
-      this.getWeek(_date, this.data.storeData);
+      let _date = this.getDate(this.data.calendar.dateFormate, num, types === 'month' ? "month" : "day");
+      this.getWeek(_date, this.data.storeData, true);
       this.checkIsMonthBeforeCurrent();
     },
     dataAfter(e) {
@@ -80,25 +79,24 @@ Component({
       })
       let num = 1;
       let types = e.currentTarget.dataset.type;
-      let year = this.data.calendar.year + "-" + this.data.calendar.month + "-" + this.data.calendar.date
-      let _date = this.getDate(year, num, types === 'month' ? "month" : "day");
-      this.getWeek(_date, this.data.storeData);
+      let _date = this.getDate(this.data.calendar.dateFormate, num, types === 'month' ? "month" : "day");
+      this.getWeek(_date, this.data.storeData, true);
     },
     // 获取日历内容
-    checkAfter30Days(date) {
-      const closedDays = ['2020-03-20', '2020-03-21'];
+    checkAfter30Days(dateFormate) {
+      // const { closedDays } = this.data.storeData.attributes;
+      const closedDays = ['2020-03-20', '2020-03-21', '2020-03-22'];
       let isClosed = false;
-      const formatDate = moment(date.format('YYYY-MM-DD'))
       closedDays.map(close => {
-        if (moment(close).isSame(formatDate)) {
-          isClosed = true
+        if (close === dateFormate) {
+          isClosed = true;
         }
       })
-      return isClosed || formatDate.isAfter(moment().set('month', moment().month() + 1));
-      // return isClosed
+      return isClosed || moment(dateFormate).startOf('day').isAfter(moment().add(1, 'months').startOf('day'));
     },
     checkIsMonthBeforeCurrent() {
-      if (new Date().getMonth() === Number(this.data.calendar.month) - 1 && new Date().getFullYear() === Number(this.data.calendar.year)) {
+      const { dateFormate } = this.data.calendar;
+      if (moment().month() === moment(dateFormate).month() && moment().year() === moment(dateFormate).year()) {
         this.setData({
           monthBeforeCurrent: true
         })
@@ -108,38 +106,46 @@ Component({
         monthBeforeCurrent: false
       })
     },
-    getWeek(dateData, storeData) {
-      const { prices } = storeData;
-      let formatDate = moment(dateData);
+    getWeek(dateData, storeData, fromArrow) {
+      if (!storeData) {
+        return;
+      }
+      const { prices } = storeData.attributes;
+      // prices.calendar = [
+      //   {
+      //     date: '2020-03-18',
+      //     price: 50
+      //   }
+      // ]
+      let momentDate = moment(dateData)
       let currentDys= [];
       let selectedDate = {
-        year: formatDate.year(),
-        month: formatDate.month() + 1,
-        date: formatDate.date(),
-        day: formatDate.day(),
-        moment: formatDate,
+        year: momentDate.year(),
+        month: momentDate.month() + 1,
+        date: momentDate.date(),
+        day: momentDate.day(),
         price: 45,
-        reserved: formatDate.month() + 1 === 3 && formatDate.date() === 17
+        dateFormate: moment(dateData).format('YYYY-MM-DD'),
+        reserved: momentDate.month() + 1 === 3 && momentDate.month() === 17
       }
-     
       let dates = {
-        firstDay: moment(dateData).startOf('month').day(),
+        firstDay: moment(momentDate).date(1).day(),
         lastMonthDays: [],// 上个月末尾几天
         currentMonthDys: [], // 本月天数
         nextMonthDays: [], // 下个月开始几天
-        endDay: moment(dateData).endOf('month').day(),
+        endDay: moment(momentDate).endOf('month').day(),
         weeks: []
       }
       // 循环上个月末尾几天添加到数组
       for (let i = dates.firstDay - 1; i >= 0; i--) {
-        const moreThan30Days = this.checkAfter30Days(moment(dateData).set('date', -i));
-        const checkDate = moment(dateData).set('date', -i).day();
+        const lastMonthDay = moment(momentDate).month(selectedDate.month - 1).date(-i);
+        const moreThan30Days = this.checkAfter30Days(lastMonthDay.format('YYYY-MM-DD'));
         dates.lastMonthDays.push({
-          date: checkDate + '',
-          moment: moment(dateData).set('date', -i).format('YYYY-MM-DD'),
+          date: lastMonthDay.date(),
           month: selectedDate.month - 1,
           disableReserve: moreThan30Days,
-          isWeekend: checkDate === 6 || checkDate === 0 ? true : false
+          dateFormate: lastMonthDay.format('YYYY-MM-DD'),
+          isWeekend: lastMonthDay.day() === 6 || lastMonthDay.day() === 0 ? true : false
         })
       }
       // 循环本月天数添加到数组
@@ -148,31 +154,31 @@ Component({
         if (selectedDate.month === 3 && i === 17) {
           reserved = true
         }
-        const checkDate = moment(dateData).date(i).day();
-        const moreThan30Days = this.checkAfter30Days(moment(dateData).set('date', i));
+        const currentMonthDay = moment(momentDate).month(selectedDate.month - 1).date(i);
+        const moreThan30Days = this.checkAfter30Days(currentMonthDay.format('YYYY-MM-DD'));
         dates.currentMonthDys.push({
           date: i + "",
-          moment: moment(dateData).set('date', i).format('YYYY-MM-DD'),
           month: selectedDate.month,
           disableReserve: moreThan30Days,
           reserved,
-          isWeekend: checkDate === 6 || checkDate === 0 ? true : false
+          dateFormate: currentMonthDay.format('YYYY-MM-DD'),
+          isWeekend: currentMonthDay.day() === 6 || currentMonthDay.day() === 0 ? true : false
         })
       }
       // 循环下个月开始几天 添加到数组
       for (let i = 1; i < 7 - dates.endDay; i++) {
-        const moreThan30Days = this.checkAfter30Days(moment(dateData).set({'date': i, 'month': moment(dateData).month() + 1}));
-        const checkDate = moment(dateData).set('date', i).day();
+        const nextMonthDay = moment(momentDate).month(selectedDate.month).date(i);
+        const moreThan30Days = this.checkAfter30Days(nextMonthDay.format('YYYY-MM-DD'));
         dates.nextMonthDays.push({
           date: i + '',
-          moment: moment(dateData).set({'date': i, 'month': moment(dateData).month() + 1}).format('YYYY-MM-DD'),
           month: selectedDate.month + 1,
           disableReserve: moreThan30Days,
-          isWeekend: checkDate === 6 || checkDate === 0 ? true : false
+          dateFormate: nextMonthDay.format('YYYY-MM-DD'),
+          isWeekend: nextMonthDay.day() === 6 || nextMonthDay.day() === 0 ? true : false
         })
       }
 
-      currentDys = [...dates.lastMonthDays, ...dates.currentMonthDys, ...dates.nextMonthDays]
+      currentDys = currentDys.concat(dates.lastMonthDays, dates.currentMonthDys, dates.nextMonthDays)
       // 拼接数组  上个月开始几天 + 本月天数+ 下个月开始几天
       for (let i = 0; i < currentDys.length; i++) {
         if (i % 7 == 0) {
@@ -181,13 +187,14 @@ Component({
         dates.weeks[parseInt(i / 7)][i % 7] = currentDys[i]
       }
       if (prices.calendar && prices.calendar.length > 0) {
+        selectedDate.price = prices.default
         prices.calendar.map(cal => {
-          if (moment(dateData).isSame(cal.date)) {
+          if (moment(dateData).startOf('day').isSame(moment(cal.date).startOf('day'))) {
             selectedDate.price = cal.price
           }
           dates.weeks.forEach(w => {
             w.forEach(d => {
-              if (moment(cal.date).isSame(d.moment)) {
+              if (moment(cal.date).startOf('day').isSame(moment(dateData).month(d.month - 1).date(d.date).format('YYYY-MM-DD'))) {
                 d.costs = cal.price;
               } else {
                 if (d.isWeekend) {
@@ -196,7 +203,7 @@ Component({
                   d.costs = prices.default;
                 }
               }
-              if (moment().set('hour', 0).isAfter(moment(d.moment).set('hour', 1))) {
+              if (moment().startOf('day').isAfter(moment(moment(dateData).month(d.month - 1).date(d.date).startOf('day')))) {
                 d.disableReserve = true
               }
             })
@@ -211,7 +218,8 @@ Component({
             }else {
               d.costs = prices.default;
             }
-            if (moment().set('hour', 0).isAfter(moment(d.moment).set('hour', 1))) {
+            
+            if (moment().add(-1, 'days').startOf('day') >= moment(dateData).month(d.month - 1).date(d.date).startOf('day')) {
               d.disableReserve = true
             }
           })
@@ -227,19 +235,23 @@ Component({
         "calendar.day": selectedDate.day,
         'calendar.year': selectedDate.year,
         'calendar.price': selectedDate.price,
-        'calendar.moment': selectedDate.moment,
-        'calendar.reserved': selectedDate.reserved
+        'calendar.reserved': selectedDate.reserved,
+        'calendar.dateFormate': selectedDate.dateFormate
       })
+      if (fromArrow) {
+        return;
+      }
       this.setData({
         currentSelectedDate: selectedDate
       })
-      // if (this.checkAfter30Days(selectedDate.moment)) {
-      //   return;
-      // }
+      if (this.checkAfter30Days(selectedDate.dateFormate)) {
+        return;
+      }
       this.triggerEvent('getdate', { 
         year: selectedDate.year,
         month: selectedDate.month < 10 ? "0" + selectedDate.month : selectedDate.month,
         date: selectedDate.date < 10 ? "0" + selectedDate.date : selectedDate.date, 
+        dateFormate: selectedDate.dateFormate,
         price: selectedDate.price
       })
     },
@@ -247,19 +259,8 @@ Component({
      * 时间计算
      */
     getDate(date, AddDayCount, str = 'day') {
-      const formatDate = moment(date);
-      switch (str) {
-        case 'day':
-          formatDate.date(formatDate.date() + AddDayCount)// 获取AddDayCount天后的日期
-          break;
-        case 'month':
-          formatDate.month(formatDate.month() + AddDayCount)// 获取AddDayCount天后的日期
-          break;
-        case 'year':
-          formatDate.year(formatDate.year() + AddDayCount)// 获取AddDayCount天后的日期
-          break;
-      }
-      return moment(formatDate).format('YYYY-MM-DD');
+      const momentData = moment(date);
+      return str === 'month' ? momentData.add(AddDayCount, 'months').format('YYYY-MM-DD') : momentData.add(AddDayCount, 'days').format('YYYY-MM-DD');
     }
   }
 })

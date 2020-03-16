@@ -1,10 +1,11 @@
 {
   "cloud": true,
   "pages": [
+    "pages/homepage/index",
     "pages/upload/index",
     "pages/community/index",
    
-    "pages/homepage/index",
+    
     "pages/map/index",
     "pages/products/index",
     "pages/admin/index",
